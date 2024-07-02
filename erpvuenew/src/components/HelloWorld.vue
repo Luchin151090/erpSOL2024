@@ -1,58 +1,60 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <v-card>
+    <NavigationDrawer />
+    <v-app-bar :elevation="2" rounded>
+      <template v-slot:prepend>
+        <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
+      </template>
+      <v-app-bar-title>AGUA SOL ERP</v-app-bar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <div class="custom-icon">
+          <MdiLogin />
+        </div>
+        <v-icon>mdi-bell</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-account-circle</v-icon>
+      </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-list-item-title>Option 1</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>Option 2</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+  </v-card>
 </template>
 
 <script>
+import MdiLogin from '@/components/MdiLogin.vue';
+//import NavigationDrawer from './NavigationDrawer.vue';
+
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  components: {
+    MdiLogin
+    //NavigationDrawer,
+  },
+  methods: {
+    toggleDrawer() {
+      console.log('Drawer toggled');
+    },
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.custom-icon {
+  margin-right: 15px;
 }
 </style>
